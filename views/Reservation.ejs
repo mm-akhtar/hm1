@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>reservation</title>
+
+</head>
+<body>
+    <main class="container">
+        <form action="/rooms/<%= rm[0].id%>/reservaton" method="POST">
+            <img src="<%= rm[0].image %>"> <br>
+            <input type="text" name="r_name" class="form" value="<%= rm[0].room_name %>" readonly>
+            <input type="text" name="r_type" class="form" value="<%= rm[0].room_type %>" readonly>
+            <input type="number" name="price" class="form" value="<%= rm[0].price %>" readonly>
+            <input type="text" name="f_name" class="form" placeholder="FIRST NAME">
+            <input type="text" name="l_name" class="form" placeholder="LAST NAME">
+            <input type="text" name="adds" class="form" placeholder="YOUR CITY">
+            <input type="number" name="age" class="form" placeholder="AGE">
+            <input type="email" name="email" class="form" placeholder="YOUR EMAIL">
+            <input type="number" name="ph_no" class="form" placeholder="PHONE NUMBER">
+            <input type="date" name="check_in" class="form" placeholder="CHECK IN">
+            <input type="date" name="check_out" class="form" placeholder="CHECK OUT">
+            <button>BOOK</button>
+        </form>
+    </main>
+</body>
+</html>

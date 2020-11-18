@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Create room</title>
+</head>
+<body>
+    <main class="container">
+        <form action="/rooms/<%= rm[0].id%>?_method=PUT" method="POST">
+            <input type="text"  name="r_image" class="form" value="<%= rm[0].image %>">
+            <input type="text" name="r_name" class="form" value="<%= rm[0].room_name %>">
+            <input type="text" name="r_type" class="form" value="<%= rm[0].room_type %>">
+            <input type="number" name="price" class="form" value="<%= rm[0].price %>">
+            <button>Update ROOM</button>
+        </form>
+    </main>
+</body>
+</html>

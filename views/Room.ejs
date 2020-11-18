@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Create room</title>
+</head>
+<body>
+    <main class="container">
+        <form method="POST" action="/rooms">
+            <input type="text" required="required" name="r_image" class="form" placeholder="Enter image url">
+            <input type="text" required="required" name="r_name" class="form" placeholder="Enter Room Name">
+            <input type="text" required="required" name="r_type" class="form" placeholder="Enter Room Type">
+            <input type="number" required="required" name="price" class="form" placeholder="Price">
+            <button>ADD ROOM</button>
+        </form>
+    </main>
+</body>
+</html>
