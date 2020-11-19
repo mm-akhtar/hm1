@@ -1,30 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel management</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container-fluid">
-        <button><a class="btn btn-lg" href="/rooms/new">ADD ROOM</a></button>
+<%- include('partials/header.ejs')%>
+
+    <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <div class="row">
-                <% for(var i = 0; i<room.length; i++) {%>
-                    <div class="col-4">
-                        <div class="card" style="width: 22rem;">
-                            <img class="card-img-top" src="<%=room[i].image %>" alt="Card image cap">
-                            <div class="card-body">
-                              <h5 class="card-title"><%=room[i].room_name %></h5>
-                              <p class="card-text"><%=room[i].room_type %> <span class="justify-content-end text-primary"><%=room[i].price %> Rs</span></p>
-                              <a href="/rooms/<%=room[i].id %>" class="btn btn-primary">VIEW DETAILS</a>
-                            </div>
-                        </div>
-                    </div>
-               <% } %>
-            </div>
+          <h1 class="display-4"><strong>&#9813; KNS ROYAL</strong></h1>
+          <h4>Experience the Royal Life</h4>
+          <p class="lead">Hotel KNS ROYAL is located in the heart of the historic center of Wakanda in an extremely characteristic, quite and lively area within 
+              short walk distance to all sites and is surrounded by the extraordinary beauty of buildings, shops and monuments.On entering this charming hotel in
+               Wakanda, you will immediately sense its special intimate atmosphere that makes you feel like being in your own castle.
+          </p>
+          <a class="btn btn-lg btn-dark" href="/rooms/new">ADD NEW ROOM</a>
         </div>
-    </div> 
-</body>
-</html>
+        
+    </div>
+
+    <div class="container-fluid">
+        <% for(var i = 0; i<room.length; i++) {%>
+            <div class="card mb-3" >
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img class="card-img-top" src="<%=room[i].image %>" alt="Card image cap">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><%=room[i].room_name %></h2>
+                            <p class="card-text"><%=room[i].room_desc.substring(0,300) %>....</p>
+                            <p class="card-text "><strong>&#9813;</strong> <%=room[i].room_type %></i> </p>
+                            <p class="card-text "><i class="fas fa-wifi"></i> Complimentary WiFi</p>
+                            <article>
+                                <p class="card-text ">&#10066; <%=room[i].room_size %> sq Mt</p>
+                                <p class="card-text "><i class="fas fa-swimmer"></i> Swimming Pool</p>
+                            </article>
+                            <section>
+                                <h3 class="text-primary"> $ <%=room[i].price %><sup>*</sup></h3>
+                                <p>Starting Rate/Night</p>
+                            </section>
+                            <a href="/rooms/<%=room[i].id %>" class=" float-right btn btn-primary">VIEW DETAILS</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+<%- include ('partials/footer.ejs')%> 

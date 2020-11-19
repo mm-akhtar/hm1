@@ -1,29 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>reservation</title>
-
-</head>
-<body>
-    <main class="container">
-        <form action="/rooms/<%= rm[0].id%>/reservaton" method="POST">
-            <img src="<%= rm[0].image %>"> <br>
-            <input type="text" name="r_name" class="form" value="<%= rm[0].room_name %>" readonly>
-            <input type="text" name="r_type" class="form" value="<%= rm[0].room_type %>" readonly>
-            <input type="number" name="price" class="form" value="<%= rm[0].price %>" readonly>
-            <input type="text" name="f_name" class="form" placeholder="FIRST NAME">
-            <input type="text" name="l_name" class="form" placeholder="LAST NAME">
-            <input type="text" name="adds" class="form" placeholder="YOUR CITY">
-            <input type="number" name="age" class="form" placeholder="AGE">
-            <input type="email" name="email" class="form" placeholder="YOUR EMAIL">
-            <input type="number" name="ph_no" class="form" placeholder="PHONE NUMBER">
-            <input type="date" name="check_in" class="form" placeholder="CHECK IN">
-            <input type="date" name="check_out" class="form" placeholder="CHECK OUT">
-            <button>BOOK</button>
+<%- include('partials/header.ejs')%>
+    <main id="Rvetion" class="container" style="width: 40%; margin: 25px auto; margin-top: 6rem;">
+        <h2 class="py-2" style="text-align: center">Book Royal Experience</h2>
+        <img style="width: 100%; padding: 1rem; margin: auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" src="<%= rm[0].image %>"> <br>
+        <form class="py-4" action="/rooms/<%= rm[0].id%>/reservaton" method="POST">
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Room Name :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="text" name="r_name" class="form-control" value="<%= rm[0].room_name %>" readonly>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Room Type :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="text" name="r_type" class="form-control" value=" <%= rm[0].room_type %>" readonly>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Price :</strong></label>
+              <div class="col-sm-8 px-0 ">
+                <input type="text" name="price" class="form-control" value=" $ <%= rm[0].price %>" readonly>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>First Name :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="text" name="f_name" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Last Name :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="text" name="l_name" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>City :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="text" name="adds" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Age :</strong></label>
+              <div class="col-sm-8 px-0 ">
+                <input type="number" name="age" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Email :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="email" name="email" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Phone Number :</strong></label>
+              <div class="col-sm-8 px-0 ">
+                <input type="number" name="ph_no" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Check In :</strong></label>
+              <div class="col-sm-8 px-0">
+                <input type="date" name="check_in" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 px-0 col-form-label"><strong>Check Out :</strong></label>
+              <div class="col-sm-8 px-0 ">
+                <input type="date" name="check_out" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12 px-0">
+                <button style="width: 100%; margin: 25px auto;"  class="btn btn-lg btn-outline-success">BOOK</button>
+              </div>
+            </div>
         </form>
+        
     </main>
-</body>
-</html>
+
+<%- include ('partials/footer.ejs')%> 

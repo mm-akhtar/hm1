@@ -2,7 +2,8 @@ var express 		= require('express'),
 	mysql			= require('mysql'),
 	methodOverride	= require('method-override'),
     bodyParser 		= require('body-parser');
-    
+
+
 var app = express();
 
 
@@ -36,7 +37,7 @@ app.get("/", function(req, res){
 // INDEX ROUTE
 
 app.get("/rooms", function(req, res){
-	var q = "SELECT id, room_name, room_type, price, image FROM rooms";
+	var q = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms";
 	connection.query(q, function(err, results){
 		if(err) throw err;
 		var room = results;
@@ -58,7 +59,9 @@ app.post("/rooms", function(req, res){
 		room_name : req.body.r_name,
 		room_type : req.body.r_type,
 		price : req.body.price,
-		image : req.body.r_image
+		image : req.body.r_image,
+		room_desc : req.body.r_desc,
+		room_size : req.body.r_size
 	};
 	connection.query('INSERT INTO rooms SET?', newRoom, function(err, result){
 		if(err) throw err;
@@ -70,7 +73,7 @@ app.post("/rooms", function(req, res){
 // SHOW ROUTE
 app.get("/rooms/:id", function(req, res){
 
-	var p = "SELECT id, room_name, room_type, price, image FROM rooms WHERE rooms.id = " + req.params.id;
+	var p = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms WHERE rooms.id = " + req.params.id;
 	connection.query(p, function(err, fRoom){
 		if(err) throw err;
 		var foundRoom = fRoom;
@@ -83,7 +86,7 @@ app.get("/rooms/:id", function(req, res){
 // EDIT ROUTE
 
 app.get("/rooms/:id/edit", function(req, res){
-	var p = "SELECT id, room_name, room_type, price, image FROM rooms WHERE rooms.id = " + req.params.id;
+	var p = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms WHERE rooms.id = " + req.params.id;
 	connection.query(p, function(err, fRoom){
 		if(err) throw err;
 		var foundRoom = fRoom;
@@ -99,7 +102,9 @@ app.put("/rooms/:id", function(req, res) {
 		room_name : req.body.r_name,
 		room_type : req.body.r_type,
 		price : req.body.price,
-		image : req.body.r_image
+		image : req.body.r_image,
+		room_desc : req.body.r_desc,
+		room_size : req.body.r_size
 	};
 
 	// console.log(newRoom);
@@ -154,7 +159,7 @@ app.post("/rooms/:id/reservaton", function(req, res){
 	};
 	connection.query('INSERT INTO customers SET?', newCustomer, function(err, result){
 		if(err) throw err;
-		console.log(result.insertId);
+		// console.log(result.insertId);
 
 		var newReservation = {
 			room_id 	: req.params.id,
@@ -165,7 +170,14 @@ app.post("/rooms/:id/reservaton", function(req, res){
 
 		connection.query('INSERT INTO reservation SET?', newReservation, function(err, result2){
 			if(err) throw err;
-			res.render('bill', {customer:newCustomer, reservation:newReservation, rId: result2.insertId, amount:req.body.price});
+			var d = "SELECT DATEDIFF(check_out, check_in) AS datediff FROM reservation WHERE reservation.id = " + result2.insertId;
+			connection.query(d,function(err, rslt){
+				if(err) throw err;
+				// console.log(rslt[0].datediff);
+				days = rslt[0].datediff;
+				res.render('bill', {customer:newCustomer, reservation:newReservation, rId: result2.insertId, amount:req.body.price, day: days});
+			})
+			
 		});
 
 
