@@ -2,14 +2,16 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4"><strong>&#9813; KNS ROYAL</strong></h1>
-          <h4>Experience the Royal Life</h4>
-          <p class="lead">Hotel KNS ROYAL is located in the heart of the historic center of Wakanda in an extremely characteristic, quite and lively area within 
+            <h1 class="display-4"><strong>&#9813; KNS ROYAL</strong></h1>
+            <h4>Experience the Royal Life</h4>
+            <p class="lead">Hotel KNS ROYAL is located in the heart of the historic center of Wakanda in an extremely characteristic, quite and lively area within 
               short walk distance to all sites and is surrounded by the extraordinary beauty of buildings, shops and monuments.On entering this charming hotel in
                Wakanda, you will immediately sense its special intimate atmosphere that makes you feel like being in your own castle.
-          </p>
-          <a class="btn btn-lg btn-dark" href="/rooms/new">ADD NEW ROOM</a>
-          <a style="color: aliceblue; margin-left: 10px;" class="btn btn-lg btn-outline-primary" href="/data">Booking Details</a>
+            </p>
+            <% if(currentUser){ %>
+                <a class="btn btn-lg btn-dark" href="/rooms/new">ADD NEW ROOM</a>
+                <a style="color: aliceblue; margin-left: 10px;" class="btn btn-lg btn-outline-primary" href="/data">Booking Details</a>
+            <% } %>
         </div>
         
     </div>

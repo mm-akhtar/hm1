@@ -26,11 +26,13 @@
             </div>
         </div>
     </div>
-    <section class="container-fluid">
-        <form action="/rooms/<%= rm[0].id %>?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
-        </form>
-        <br>
-        <a class="btn btn-lg btn-primary" href="/rooms/<%= rm[0].id %>/edit"> edit</a>
-    </section>
-<%- include ('partials/footer.ejs')%> 
+    <% if(currentUser){ %>
+        <section class="container-fluid">
+            <form action="/rooms/<%= rm[0].id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            <br>
+            <a class="btn btn-lg btn-primary" href="/rooms/<%= rm[0].id %>/edit"> edit</a>
+        </section>
+    <% } %>
+<%- include ('partials/footer.ejs')%>

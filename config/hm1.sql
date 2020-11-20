@@ -22,10 +22,13 @@ CREATE TABLE rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(30) NOT NULL,
     room_type VARCHAR(10) NOT NULL,
-    price DECIMAL(8,2) NOT NULL
+    price DECIMAL(8,2) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    room_desc VARCHAR(255) NOT NULL,
+    room_size INT NOT NULL
 );
 
-INSERT INTO rooms(room_name, room_type, price) VALUES
+INSERT INTO rooms(room_name, room_type, price) VALUES  --inser is incomplete
 ('Luxury Room', 'A/C', '10000'),
 ('Grande City View', 'A/C', '10000'),
 ('Grande Sea View', 'NON A/C', '7000'),

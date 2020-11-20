@@ -2,8 +2,10 @@ var express 		= require('express'),
 	mysql			= require('mysql'),
 	methodOverride	= require('method-override'),
 	passport 		= require('passport'),
-	LocalStrategy 	= require('passport-local'),
-    bodyParser 		= require('body-parser');
+	flash 		= require('connect-flash'),
+	passprtConfig = require('./config/passportConfig'),
+	LocalStrategy 	= require('passport-local').Strategy,
+	bodyParser 		= require('body-parser');
 
 
 var app = express();
@@ -15,34 +17,8 @@ var connection = mysql.createConnection({
 	database: 'hm1'
 });
 
-// app.use(require("express-session")({
-//     secret: "Once again Rusty wins cutest dog!",
-//     resave: false,
-//     saveUninitialized: false
-// }));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(function(username,password,done){
-// 	connection.query("select * from users where user_name='"+username+"'     ",function(err,user){
-// 	 if(err)
-// 	 {
-// 		 return done(err);           
-// 	 }
-// 	 if(!user)
-// 	 {
-// 		 return done(null,false,{message: 'Incorrect user name'});           
-// 	 }
-// 	 if(user.password != password)
-// 	 {
-// 		return done(null,false,{message: 'Incorrect password'});
-// 	 }
- 
-// 	 return done(null,user);     
- 
-// 	});
-//  }
-//  ));
+passprtConfig(passport);
 
 
 
@@ -51,14 +27,27 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 
-// app.use(methodOverride(function(req, res){
-// 	if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-// 	  // look in urlencoded POST bodies and delete it
-// 	  var method = req.body._method
-// 	  delete req.body._method
-// 	  return method
-// 	}
-//   }));
+// Authentication
+app.use(require('express-session')({
+	secret: 'vidyapathaisalwaysrunning',
+	resave: true,
+	saveUninitialized: true
+ } ));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+
+//Setting variable
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	res.locals.success = req.flash('success');
+	res.locals.error = req.flash('error');
+	next();
+ });
+
 
 // RESTFUL ROUTS
 
@@ -80,13 +69,13 @@ app.get("/rooms", function(req, res){
 
 // NEW ROUTE
 
-app.get("/rooms/new", function(req, res){
+app.get("/rooms/new", isLoggedIn, function(req, res){
 	res.render('Room');
 });
 
 // CREATE ROUTR
 
-app.post("/rooms", function(req, res){
+app.post("/rooms", isLoggedIn, function(req, res){
 	var  newRoom = { 
 		room_name : req.body.r_name,
 		room_type : req.body.r_type,
@@ -117,7 +106,7 @@ app.get("/rooms/:id", function(req, res){
 
 // EDIT ROUTE
 
-app.get("/rooms/:id/edit", function(req, res){
+app.get("/rooms/:id/edit", isLoggedIn, function(req, res){
 	var p = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms WHERE rooms.id = " + req.params.id;
 	connection.query(p, function(err, fRoom){
 		if(err) throw err;
@@ -129,7 +118,7 @@ app.get("/rooms/:id/edit", function(req, res){
 
 
 // UPDATE ROUTE
-app.put("/rooms/:id", function(req, res) {
+app.put("/rooms/:id", isLoggedIn, function(req, res) {
 	var  newRoom = { 
 		room_name : req.body.r_name,
 		room_type : req.body.r_type,
@@ -152,7 +141,7 @@ app.put("/rooms/:id", function(req, res) {
 
 // DELETE ROUTE
 
-app.delete("/rooms/:id", function(req, res){
+app.delete("/rooms/:id", isLoggedIn, function(req, res){
 	//destroy blog
 	var t = "DELETE FROM rooms WHERE rooms.id =" + req.params.id;
 	connection.query(t, function(err, dRoom){
@@ -221,7 +210,7 @@ app.post("/rooms/:id/reservaton", function(req, res){
 
 // DTA TRACK ROUTE
 
-app.get("/data", function(req, res){
+app.get("/data", isLoggedIn, function(req, res){
 	var d = "SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, DATE_FORMAT(check_in, '%y-%m-%d') AS checkin, DATE_FORMAT(check_out, '%y-%m-%d') AS checkout, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id";
 	connection.query(d, function(err, results){
 		if(err) throw err;
@@ -231,59 +220,45 @@ app.get("/data", function(req, res){
 	});
 });
 
+// AUTH ROUTES
 
-// PASSPORT AUTHENTICATION
+// show register form
+app.get("/register", isLoggedIn, function(req, res){
+	res.render("auth/register", { message: req.flash('signupMessage') });
+ });
+ //handle sign up logic
 
-
-// var flash = require('connect-flash');
-// var express = require('express');
-// var passport = require('passport');
-// var LocalStrategy = require('passport-local').Strategy;
-// app.use(flash());
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(function(username,password,done){
-//    connection.query("select * from userinfo where UserName='"+username+"'     ",function(err,user){
-//     if(err)
-//     {
-//         return done(err);           
-//     }
-//     if(!user)
-//     {
-//         return done(null,false,{message: 'Incorrect user name'});           
-//     }
-//     if(user.password != password)
-//     {
-//        return done(null,false,{message: 'Incorrect password'});
-//     }
-
-//     return done(null,user);     
-
-//    });
-// }
-// ));
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.deserializeUser(function(user, done) {
-// done(null, user);
-// });
-
-// app.post('/validates', passport.authenticate('local',{successRedirect: '/productdisplay', failureRedirect: '/validate', failureFlash: true }));
-
-
-
-
-
-
-
-
-
-
-
-
+ app.post('/register', isLoggedIn, passport.authenticate('local-signup', {
+	successRedirect : '/', // redirect to the secure profile section
+	failureRedirect : '/register', // redirect back to the signup page if there is an error
+	failureFlash : true // allow flash messages
+}));
+ 
+ // show login form
+ app.get("/login", function(req, res){
+	res.render("auth/login",{ message: req.flash('loginMessage') }); 
+ });
+ // handling login logic
+ app.post("/login", passport.authenticate("local-login", 
+	 {
+		 successRedirect: "/rooms",
+		 failureRedirect: "/login",
+		 failureFlash : true
+	 }), function(req, res){
+ });
+ 
+ // logot route
+ app.get("/logout", isLoggedIn, function(req, res){
+	req.logout();
+	res.redirect("/");
+ });
+ 
+ function isLoggedIn(req, res, next){
+	 if(req.isAuthenticated()){
+		 return next();
+	 }
+	 res.redirect("/login");
+ }
 
 // LISTENING ROUTE
 

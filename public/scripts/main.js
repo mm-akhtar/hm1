@@ -21,3 +21,5 @@ document.getElementsByClassName("curdate")[0].innerHTML =  today;
 
 document.getElementsByClassName("Curdate")[0].innerHTML = Today;
 
+module.exports = date_diff_indays;
+
