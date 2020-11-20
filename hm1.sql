@@ -71,3 +71,6 @@ INSERT INTO reservation(room_id, customer_id) VALUES
 ('5', '4' );
 
 
+
+
+SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, check_in, check_out, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id;

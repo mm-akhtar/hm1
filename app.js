@@ -1,6 +1,8 @@
 var express 		= require('express'),
 	mysql			= require('mysql'),
 	methodOverride	= require('method-override'),
+	passport 		= require('passport'),
+	LocalStrategy 	= require('passport-local'),
     bodyParser 		= require('body-parser');
 
 
@@ -12,6 +14,36 @@ var connection = mysql.createConnection({
 	user	: 'root',
 	database: 'hm1'
 });
+
+// app.use(require("express-session")({
+//     secret: "Once again Rusty wins cutest dog!",
+//     resave: false,
+//     saveUninitialized: false
+// }));
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new LocalStrategy(function(username,password,done){
+// 	connection.query("select * from users where user_name='"+username+"'     ",function(err,user){
+// 	 if(err)
+// 	 {
+// 		 return done(err);           
+// 	 }
+// 	 if(!user)
+// 	 {
+// 		 return done(null,false,{message: 'Incorrect user name'});           
+// 	 }
+// 	 if(user.password != password)
+// 	 {
+// 		return done(null,false,{message: 'Incorrect password'});
+// 	 }
+ 
+// 	 return done(null,user);     
+ 
+// 	});
+//  }
+//  ));
+
 
 
 app.set("view engine", "ejs");
@@ -175,7 +207,8 @@ app.post("/rooms/:id/reservaton", function(req, res){
 				if(err) throw err;
 				// console.log(rslt[0].datediff);
 				days = rslt[0].datediff;
-				res.render('bill', {customer:newCustomer, reservation:newReservation, rId: result2.insertId, amount:req.body.price, day: days});
+				pay = days*req.body.price;
+				res.render('bill', {customer:newCustomer, reservation:newReservation, rId: result2.insertId, amount:req.body.price, day: days, r_name: req.body.r_name, tpay:pay});
 			})
 			
 		});
@@ -184,6 +217,70 @@ app.post("/rooms/:id/reservaton", function(req, res){
 	});
 
 });
+
+
+// DTA TRACK ROUTE
+
+app.get("/data", function(req, res){
+	var d = "SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, DATE_FORMAT(check_in, '%y-%m-%d') AS checkin, DATE_FORMAT(check_out, '%y-%m-%d') AS checkout, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id";
+	connection.query(d, function(err, results){
+		if(err) throw err;
+		var dat = results;
+		// console.log(dat);
+        res.render('data', {datas:dat});
+	});
+});
+
+
+// PASSPORT AUTHENTICATION
+
+
+// var flash = require('connect-flash');
+// var express = require('express');
+// var passport = require('passport');
+// var LocalStrategy = require('passport-local').Strategy;
+// app.use(flash());
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new LocalStrategy(function(username,password,done){
+//    connection.query("select * from userinfo where UserName='"+username+"'     ",function(err,user){
+//     if(err)
+//     {
+//         return done(err);           
+//     }
+//     if(!user)
+//     {
+//         return done(null,false,{message: 'Incorrect user name'});           
+//     }
+//     if(user.password != password)
+//     {
+//        return done(null,false,{message: 'Incorrect password'});
+//     }
+
+//     return done(null,user);     
+
+//    });
+// }
+// ));
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
+
+// passport.deserializeUser(function(user, done) {
+// done(null, user);
+// });
+
+// app.post('/validates', passport.authenticate('local',{successRedirect: '/productdisplay', failureRedirect: '/validate', failureFlash: true }));
+
+
+
+
+
+
+
+
+
 
 
 

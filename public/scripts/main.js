@@ -1,13 +1,13 @@
 var d   = new Date();
 var yy  = d.getFullYear(),
-    mm  = d.getMonth(),
+    mm  = d.getMonth()+1,
     dd  = d.getDate(),
     hh  = d.getHours(),
     mn  = d.getMinutes();
 
 var today = yy +''+ mm +''+ dd +''+ hh +''+ mn;
 
-
+var Today= dd +"/" + mm + "/" + yy;
 
 
 
@@ -18,4 +18,6 @@ var date_diff_indays = function(date1, date2) {
 };
 
 document.getElementsByClassName("curdate")[0].innerHTML =  today;
+
+document.getElementsByClassName("Curdate")[0].innerHTML = Today;
 

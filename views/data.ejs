@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs')%>
+
+<div class="container-fluid box2">
+
+    <h2 style="padding-top: 2rem; margin-bottom: 2rem; text-align: center;"> KNS ROYAL - Reservation Data</h2>
+
+    <table>
+      <tr>
+        <th>Reservation ID</th>
+        <th>Customer ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Phone Number</th>
+        <th>Room ID</th>
+        <th>Room Name</th>
+        <th>Check IN</th>
+        <th>Check OUT</th>
+        <th>Price</th>
+      </tr>
+      <% datas.forEach(function(datm){ %>
+        <tr>
+            <td><%= datm.RI %></td>
+            <td><%= datm.CI %></td>
+            <td><%= datm.FName %></td>
+            <td><%= datm.LName %></td>
+            <td><%= datm.age %></td>
+            <td><%= datm.ph_no %></td>
+            <td><%= datm.RmI %></td>
+            <td><%= datm.room_name %></td>
+            <td><%= datm.checkin %></td>
+            <td><%= datm.checkout %></td>
+            <td><%= datm.price %></td>
+          </tr>
+     <% }); %>
+     
+    </table>
+    
+
+</div>
+
+
+
+<%- include ('partials/footer.ejs')%> 
