@@ -2,9 +2,9 @@ var express 		= require('express'),
 	mysql			= require('mysql'),
 	methodOverride	= require('method-override'),
 	passport 		= require('passport'),
-	flash 		= require('connect-flash'),
-	passprtConfig = require('./config/passportConfig'),
-	LocalStrategy 	= require('passport-local').Strategy,
+	cookieParser 	= require("cookie-parser"),
+	flash 			= require('connect-flash'),
+	passprtConfig 	= require('./config/passportConfig'),
 	bodyParser 		= require('body-parser');
 
 
@@ -26,6 +26,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
+app.use(cookieParser('secret'));
 
 // Authentication
 app.use(require('express-session')({
@@ -265,5 +266,3 @@ app.get("/register", isLoggedIn, function(req, res){
 app.listen(2000, function(){
     console.log("server started");
 });
-
-

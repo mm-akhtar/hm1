@@ -1,6 +1,6 @@
 <%- include('partials/header.ejs')%>
 
-    <div id="showRoom" class="container-fluid showRoom">
+    <div id="showRoom" class="container-fluid showRoom pb-4 mb-4 pt-2">
         <div class="row">
             <div class="col-md-7">
                 <div class="container-fluid">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <% if(currentUser){ %>
-        <section class="container-fluid">
+        <section class="container-fluid pb-2">
             <form action="/rooms/<%= rm[0].id %>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete</button>
             </form>

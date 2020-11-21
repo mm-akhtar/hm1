@@ -13,17 +13,24 @@ body{
 .jumbotron {
     height: 30rem;
     background-image: url("https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg");
+    /* background-image: url("https://pixabay.com/get/5fe6d7444257b10ff3d8992ccf2934771438dbf85257714c7c297ad5954e_340.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     color: rgb(214, 246, 247);
     opacity: 0.9;
 }
-.jumbotron h1, .jumbotron h4, .jumbotron p {
+.jumbotron h1, .jumbotron h3, .jumbotron p {
     text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
                  0px 8px 13px rgba(0,0,0,0.1),
                  0px 18px 23px rgba(0,0,0,0.1);
                  margin-top: 1.3rem;
+}
+
+.jumbotron p {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color:rgb(214, 246, 247);
 }
 
 .card a {
@@ -54,6 +61,19 @@ body{
 
 #mynav {
     opacity: 0.7;
+}
+#myfoot {
+  opacity: 0.7;
+}
+
+#myfoot {
+  color: rgb(214, 246, 247);
+}
+
+#myfoot h1, #myfoot h5 {
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+                 0px 8px 13px rgba(0,0,0,0.1),
+                 0px 18px 23px rgba(0,0,0,0.1);
 }
 
 #showRoom {
