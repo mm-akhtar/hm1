@@ -1,5 +1,8 @@
 body{
-    background-color: rgb(241, 213, 213);
+  background: #ee9ca7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 }
 
 .card-img-top {
@@ -50,10 +53,41 @@ body{
     right: 18rem;
 }
 
-.card {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(214, 246, 247);
+input:hover {
+  box-shadow: rgba(105, 167, 248, 0.35) 5px 5px 10px;
+  border: 1px solid rgba(130, 190, 247, 0.4);
 }
+
+textarea:hover {
+  box-shadow: rgba(105, 167, 248, 0.35) 5px 5px 10px;
+  border: 1px solid rgba(130, 190, 247, 0.4);
+}
+
+textarea {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid  rgba(130, 190, 247, 0.4);
+  padding: 10px;
+}
+
+textarea:focus {
+  border: none;
+}
+
+.card {
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+
 #newRoom {
     margin-top: 20%;
 }

@@ -26,12 +26,15 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <label><strong>Description :</strong> </label> <input type="text" name="r_desc" class="form-control" value="<%= rm[0].room_desc %>">
+                    <label><strong> Size :</strong></label> <input type="number" name="r_size" class="form-control" value="<%= rm[0].room_size %>">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <label><strong> Size :</strong></label> <input type="number" name="r_size" class="form-control" value="<%= rm[0].room_size %>">
+                    <label for="rDescription"><strong> Room Description :</strong> </label>
+                    <textarea id="rDescription" class="form-contrl" name="r_desc" rows="10"><%= rm[0].room_desc %></textarea>
+
+                    <!-- <input type="text" name="r_desc" class="form-control" value="<%= rm[0].room_desc %>"> -->
                 </div>
             </div>
             <div class="form-group">
