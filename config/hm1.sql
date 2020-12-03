@@ -10,13 +10,13 @@ CREATE TABLE users(
 );
 
 
-INSERT INTO users(user_name, pswd) VALUES
-('akhtar4', '123456'),
-('altamash4','345674'),
-('sarfaraz84','675423758'),
-('sudheer44','7456258'),
-('kalam634','83792394'),
-('arshad74','937543895');
+-- INSERT INTO users(user_name, pswd) VALUES
+-- ('akhtar4', '123456'),
+-- ('altamash4','345674'),
+-- ('sarfaraz84','675423758'),
+-- ('sudheer44','7456258'),
+-- ('kalam634','83792394'),
+-- ('arshad74','937543895');
 
 CREATE TABLE rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,12 +28,12 @@ CREATE TABLE rooms (
     room_size INT NOT NULL
 );
 
-INSERT INTO rooms(room_name, room_type, price) VALUES  --inser is incomplete
-('Luxury Room', 'A/C', '10000'),
-('Grande City View', 'A/C', '10000'),
-('Grande Sea View', 'NON A/C', '7000'),
-('Taj Club City View', 'DELUX', '20000'),
-('Taj Club Sea View', 'SUIT', '50000');
+-- INSERT INTO rooms(room_name, room_type, price) VALUES  --inser is incomplete
+-- ('Luxury Room', 'A/C', '10000'),
+-- ('Grande City View', 'A/C', '10000'),
+-- ('Grande Sea View', 'NON A/C', '7000'),
+-- ('Taj Club City View', 'DELUX', '20000'),
+-- ('Taj Club Sea View', 'SUIT', '50000');
 
 
 
@@ -48,12 +48,12 @@ CREATE TABLE customers (
 );
 
 
-INSERT INTO customers(f_name, l_name, adds, age, email, ph_no) VALUES
-('sarfarz', 'kahan', 'Bangalore', '21', 'ahmedsarfaraz@gmail.com', '9577780979'),
-('altamash', 'subedaar', 'mumbai', '19', 'altamshsebhedar@gmail.com', '6363580979'),
-('akhtar', 'khan', 'Karimganj', '23', 'akhtarkhanz@yahoo.com', '9365280979'),
-('sudheer', 'sharma', 'lucknow', '25', 'sudheer@gmail.com', '8985680979'),
-('nixon', 'dr', 'chennai', '39', 'nixonkabir@hotmail.com', '9577712345');
+-- INSERT INTO customers(f_name, l_name, adds, age, email, ph_no) VALUES
+-- ('sarfarz', 'kahan', 'Bangalore', '21', 'ahmedsarfaraz@gmail.com', '9577780979'),
+-- ('altamash', 'subedaar', 'mumbai', '19', 'altamshsebhedar@gmail.com', '6363580979'),
+-- ('akhtar', 'khan', 'Karimganj', '23', 'akhtarkhanz@yahoo.com', '9365280979'),
+-- ('sudheer', 'sharma', 'lucknow', '25', 'sudheer@gmail.com', '8985680979'),
+-- ('nixon', 'dr', 'chennai', '39', 'nixonkabir@hotmail.com', '9577712345');
 
 CREATE TABLE reservation (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -66,14 +66,14 @@ CREATE TABLE reservation (
 );
 
 
-INSERT INTO reservation(room_id, customer_id) VALUES
-('1', '5' ),
-('4', '1' ),
-('2', '2' ),
-('3', '3' ),
-('5', '4' );
+-- INSERT INTO reservation(room_id, customer_id) VALUES
+-- ('1', '5' ),
+-- ('4', '1' ),
+-- ('2', '2' ),
+-- ('3', '3' ),
+-- ('5', '4' );
 
 
 
 
-SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, check_in, check_out, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id;
+-- SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, check_in, check_out, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id;
