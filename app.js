@@ -67,7 +67,7 @@ app.get("/", function(req, res){
 // INDEX ROUTE
 
 app.get("/rooms", function(req, res){
-	var q = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms";
+	var q = "SELECT id, room_name, room_type, price, image, room_desc, room_size FROM rooms ORDER BY id DESC";
 	connection.query(q, function(err, results){
 		if(err) throw err;
 		var room = results;
@@ -162,6 +162,13 @@ app.delete("/rooms/:id", isLoggedIn, function(req, res){
 
 	//redirect somewhere
  });
+// checking for invalid entry
+app.get("/rooms/*", (req, res) => {
+	res.send("404 page");
+} )
+
+
+
 
 // RESERVATION ROUTS
 
@@ -220,7 +227,7 @@ app.post("/rooms/:id/reservaton", function(req, res){
 // DATA TRACK ROUTE
 
 app.get("/data", isLoggedIn, function(req, res){
-	var d = "SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, DATE_FORMAT(check_in, '%y-%m-%d') AS checkin, DATE_FORMAT(check_out, '%y-%m-%d') AS checkout, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id";
+	var d = "SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, DATE_FORMAT(check_in, '%y-%m-%d') AS checkin, DATE_FORMAT(check_out, '%y-%m-%d') AS checkout, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id ORDER BY reservation.id DESC";
 	connection.query(d, function(err, results){
 		if(err) throw err;
 		var dat = results;
@@ -268,6 +275,9 @@ app.get("/register", isLoggedIn, function(req, res){
 	 }
 	 res.redirect("/login");
  }
+
+
+
 
 // LISTENING ROUTE
 const port = process.env.PORT || 2000;
