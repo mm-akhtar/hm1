@@ -163,9 +163,6 @@ app.delete("/rooms/:id", isLoggedIn, function(req, res){
 	//redirect somewhere
  });
 // checking for invalid entry
-app.get("/rooms/*", (req, res) => {
-	res.send("404 page");
-} )
 
 
 
