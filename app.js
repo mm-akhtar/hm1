@@ -262,7 +262,8 @@ app.get("/register", isLoggedIn, function(req, res){
  }
 
 // LISTENING ROUTE
+const port = process.env.PORT || 2000;
 
-app.listen(2000, function(){
-    console.log("server started");
+app.listen(port, function(){
+    console.log(`Server started at ${port}`);
 });

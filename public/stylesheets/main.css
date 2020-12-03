@@ -96,12 +96,10 @@ textarea:focus {
 #mynav {
     opacity: 0.7;
 }
-#myfoot {
-  opacity: 0.7;
-}
 
 #myfoot {
   color: rgb(214, 246, 247);
+  opacity: 0.7;
 }
 
 #myfoot h1, #myfoot h5 {
