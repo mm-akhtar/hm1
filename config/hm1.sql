@@ -1,6 +1,6 @@
-CREATE DATABASE hm1;
+-- CREATE DATABASE hm1;
 
-USE hm1;
+USE sql10380058;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,17 +55,27 @@ CREATE TABLE customers (
 -- ('sudheer', 'sharma', 'lucknow', '25', 'sudheer@gmail.com', '8985680979'),
 -- ('nixon', 'dr', 'chennai', '39', 'nixonkabir@hotmail.com', '9577712345');
 
+-- CREATE TABLE reservation (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     room_id INT NOT NULL,
+--     customer_id INT NOT NULL,
+--     check_in TIMESTAMP DEFAULT NOW(),
+--     check_out TIMESTAMP DEFAULT NOW(),
+--     FOREIGN KEY (room_id) REFERENCES rooms(id),
+--     FOREIGN key (customer_id) REFERENCES customers(id)   
+-- );
+
+-- rootMysql
 CREATE TABLE reservation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     room_id INT NOT NULL,
     customer_id INT NOT NULL,
     check_in TIMESTAMP DEFAULT NOW(),
-    check_out TIMESTAMP DEFAULT NOW(),
+    check_out DATETIME DEFAULT '0000-00-00 00:00:00',
     FOREIGN KEY (room_id) REFERENCES rooms(id),
-    FOREIGN key (customer_id) REFERENCES customers(id)   
+    FOREIGN key (customer_id) REFERENCES customers(id)
 );
-
-
+  
 -- INSERT INTO reservation(room_id, customer_id) VALUES
 -- ('1', '5' ),
 -- ('4', '1' ),

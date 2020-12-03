@@ -5,6 +5,16 @@ body{
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+#grown {
+  flex-grow: 1;
+}
 .card-img-top {
     height: fit-content;
 }

@@ -11,10 +11,18 @@ var express 		= require('express'),
 var app = express();
 
 
+// var connection = mysql.createConnection({
+// 	host	: 'localhost',
+// 	user	: 'root',
+// 	database: 'hm1'
+// });
+
+//for remote SQL 
 var connection = mysql.createConnection({
-	host	: 'localhost',
-	user	: 'root',
-	database: 'hm1'
+	host	: 'sql10.freesqldatabase.com',
+    user	: 'sql10380058',
+    password: 'Ceb3REGTW4',
+    database: 'sql10380058'
 });
 
 
@@ -209,7 +217,7 @@ app.post("/rooms/:id/reservaton", function(req, res){
 });
 
 
-// DTA TRACK ROUTE
+// DATA TRACK ROUTE
 
 app.get("/data", isLoggedIn, function(req, res){
 	var d = "SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, DATE_FORMAT(check_in, '%y-%m-%d') AS checkin, DATE_FORMAT(check_out, '%y-%m-%d') AS checkout, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id";

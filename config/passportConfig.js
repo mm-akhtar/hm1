@@ -2,16 +2,27 @@
 				
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
-
 var mysql = require('mysql');
 
+// var connection = mysql.createConnection({
+// 	host	: 'localhost',
+// 	user	: 'root',
+// 	database: 'hm1'
+// });
+
+// remote MYsql
 var connection = mysql.createConnection({
-	host	: 'localhost',
-	user	: 'root',
-	database: 'hm1'
+	host	: 'sql10.freesqldatabase.com',
+    user	: 'sql10380058',
+    password: 'Ceb3REGTW4',
+    database: 'sql10380058'
 });
 
-connection.query('USE hm1');	
+// connection.query('USE hm1');	
+
+// for remote mysql
+
+connection.query('USE sql10380058');	
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -52,8 +63,8 @@ module.exports = function(passport) {
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
         connection.query("select * from users where user_name = '"+username+"'",function(err,rows){
-			console.log(rows);
-			console.log("above row object");
+			// console.log(rows);
+			// console.log("above row object");
 			if (err)
                 return done(err);
 			 if (rows.length) {
@@ -68,7 +79,7 @@ module.exports = function(passport) {
                 newUserMysql.password = password; // use the generateHash function in our user model
 			
 				var insertQuery = "INSERT INTO users ( user_name, pswd ) values ('" + username +"','"+ password +"')";
-					console.log(insertQuery);
+					// console.log(insertQuery);
 				connection.query(insertQuery,function(err,rows){
 				newUserMysql.id = rows.insertId;
 				
