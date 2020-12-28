@@ -16,7 +16,7 @@
         <th>Room Name</th>
         <th>Check IN</th>
         <th>Check OUT</th>
-        <th>Price</th>
+        <th>Price/Night</th>
       </tr>
       <% datas.forEach(function(datm){ %>
         <tr>
@@ -30,7 +30,7 @@
             <td><%= datm.room_name %></td>
             <td><%= datm.checkin %></td>
             <td><%= datm.checkout %></td>
-            <td><%= datm.price %></td>
+            <td>$<%= datm.price %></td>
           </tr>
      <% }); %>
      

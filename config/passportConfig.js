@@ -10,19 +10,32 @@ var mysql = require('mysql');
 // 	database: 'hm1'
 // });
 
-// remote MYsql
-var connection = mysql.createConnection({
-	host	: 'sql10.freesqldatabase.com',
-    user	: 'sql10380058',
-    password: 'Ceb3REGTW4',
-    database: 'sql10380058'
-});
+// For local host mysql
+// connection.query('USE hm1');
 
-// connection.query('USE hm1');	
+// remote MYsql
+// var connection = mysql.createConnection({
+// 	host	: 'sql10.freesqldatabase.com',
+//     user	: 'sql10380058',
+//     password: 'Ceb3REGTW4',
+//     database: 'sql10380058'
+// });
 
 // for remote mysql
+// connection.query('USE sql10380058');	
 
-connection.query('USE sql10380058');	
+// Remote Hostinger Mysql
+var connection = mysql.createConnection({
+	host	: 'sql130.main-hosting.eu',
+    user	: 'u181123275_kkakhtar143',
+    password: 'Akhtar@9577',
+    database: 'u181123275_hm1'
+});
+
+// for Hostinger remote mysql
+connection.query('USE u181123275_hm1');	
+
+
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {

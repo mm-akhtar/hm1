@@ -10,7 +10,7 @@ var express 		= require('express'),
 
 var app = express();
 
-
+// For Local MySQL Host
 // var connection = mysql.createConnection({
 // 	host	: 'localhost',
 // 	user	: 'root',
@@ -18,13 +18,20 @@ var app = express();
 // });
 
 //for remote SQL 
-var connection = mysql.createConnection({
-	host	: 'sql10.freesqldatabase.com',
-    user	: 'sql10380058',
-    password: 'Ceb3REGTW4',
-    database: 'sql10380058'
-});
+// var connection = mysql.createConnection({
+// 	host	: 'sql10.freesqldatabase.com',
+//     user	: 'sql10380058',
+//     password: 'Ceb3REGTW4',
+//     database: 'sql10380058'
+// });
 
+// Remote Hostinger Mysql
+var connection = mysql.createConnection({
+	host	: 'sql130.main-hosting.eu',
+    user	: 'u181123275_kkakhtar143',
+    password: 'Akhtar@9577',
+    database: 'u181123275_hm1'
+});
 
 passprtConfig(passport);
 
