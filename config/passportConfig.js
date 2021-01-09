@@ -4,14 +4,14 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var mysql = require('mysql');
 
-// var connection = mysql.createConnection({
-// 	host	: 'localhost',
-// 	user	: 'root',
-// 	database: 'hm1'
-// });
+var connection = mysql.createConnection({
+	host	: 'localhost',
+	user	: 'root',
+	database: 'hm1'
+});
 
 // For local host mysql
-// connection.query('USE hm1');
+connection.query('USE hm1');
 
 // remote MYsql
 // var connection = mysql.createConnection({
@@ -25,15 +25,15 @@ var mysql = require('mysql');
 // connection.query('USE sql10380058');	
 
 // Remote Hostinger Mysql
-var connection = mysql.createConnection({
-	host	: 'sql130.main-hosting.eu',
-    user	: 'u181123275_kkakhtar143',
-    password: 'Akhtar@9577',
-    database: 'u181123275_hm1'
-});
+// var connection = mysql.createConnection({
+// 	host	: 'sql130.main-hosting.eu',
+//     user	: 'u181123275_kkakhtar143',
+//     password: 'Akhtar@9577',
+//     database: 'u181123275_hm1'
+// });
 
-// for Hostinger remote mysql
-connection.query('USE u181123275_hm1');	
+// // for Hostinger remote mysql
+// connection.query('USE u181123275_hm1');	
 
 
 

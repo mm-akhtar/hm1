@@ -1,0 +1,75 @@
+<%- include('partials/header.ejs')%>
+
+    <div class="container-fluid box2">
+
+        <h2 style="padding-top: 2rem; margin-bottom: 2rem; text-align: center;"> GOTHAM ROYAL - Employees Data</h2>
+        <!-- <h3> Add New Employee </h3> -->
+
+        <form class="my-4" method="POST" action="/employees">
+            <div class="form-row py-4">
+                <div class="col-sm-3">
+                    <label for="ename"><strong>Employee Name:</strong></label>
+                    <input id="ename" type="text" required="required" name="e_name" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="col-sm-3">
+                    <label for="eemail"><strong>Email:</strong></label>
+                    <input id="eemail" type="text" required="required" name="e_email" class="form-control" placeholder="Email">
+                </div>
+                <div class="col-sm-3">
+                    <label for="ephn"><strong>Phone Number:</strong></label>
+                    <input id="ephn" type="text" required="required" name="e_ph_no" class="form-control" placeholder="Contact Number">
+                </div>
+                <div class="col-sm-3">
+                    <label for="psn"><strong>Position:</strong></label>
+                    <input id="psn" type="text" required="required" name="position" class="form-control" placeholder="Position">
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Add New Employee</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Email</th>
+                <th>phone number</th>
+                <th>Joining Date</th>
+                <th>Action</th>
+            </tr>
+                <% empl.forEach(function(emp){ %>
+                    <tr>
+                        <td>
+                            EMPGR2020<%= emp.EI %>
+                        </td>
+                        <td>
+                            <%= emp.Name %>
+                        </td>
+                        <td>
+                            <%= emp.Pos %>
+                        </td>
+                        <td>
+                            <%= emp.Email %>
+                        </td>
+                        <td>
+                            <%= emp.PHN %>
+                        </td>
+                        <td>
+                            <%= emp.joining %>
+                        </td>
+                        <td>
+                            <form action="/employees/<%= emp.EI %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                            <!-- <a style="color: aliceblue; margin-left: 10px;" class="btn btn-lg btn-danger" href="#">Delete</a> -->
+                        </td>
+                    </tr>
+                    <% }); %>
+        </table>
+
+
+    </div>
+
+
+
+<%- include ('partials/footer.ejs')%>

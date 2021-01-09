@@ -198,3 +198,11 @@ a.btn-success{
     background: rgb(201, 247, 253);
     border-radius: 5px;
   }
+
+
+  form a {
+    color: aliceblue;
+  }
+  form a:hover {
+    color: rgb(255, 255, 255);
+  }
