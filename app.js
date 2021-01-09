@@ -11,11 +11,11 @@ var express 		= require('express'),
 var app = express();
 
 // For Local MySQL Host
-// var connection = mysql.createConnection({
-// 	host	: 'localhost',
-// 	user	: 'root',
-// 	database: 'hm1'
-// });
+var connection = mysql.createConnection({
+	host	: 'localhost',
+	user	: 'root',
+	database: 'hm1'
+});
 
 //for remote SQL 
 // var connection = mysql.createConnection({
@@ -26,12 +26,12 @@ var app = express();
 // });
 
 // Remote Hostinger Mysql
-var connection = mysql.createConnection({
-	host	: 'sql130.main-hosting.eu',
-    user	: 'u181123275_kkakhtar143',
-    password: 'Akhtar@9577',
-    database: 'u181123275_hm1'
-});
+// var connection = mysql.createConnection({
+// 	host	: 'sql130.main-hosting.eu',
+//     user	: 'u181123275_kkakhtar143',
+//     password: 'Akhtar@9577',
+//     database: 'u181123275_hm1'
+// });
 
 passprtConfig(passport);
 
@@ -169,7 +169,16 @@ app.delete("/rooms/:id", isLoggedIn, function(req, res){
 
 	//redirect somewhere
  });
-// checking for invalid entry
+
+//  About and contact route
+
+app.get("/about", function (req, res) {
+	res.render("about");
+});
+
+app.get("/contact", function (req, res) {
+	res.render("contact");
+})
 
 
 
@@ -239,6 +248,46 @@ app.get("/data", isLoggedIn, function(req, res){
         res.render('data', {datas:dat});
 	});
 });
+
+
+//  Employee details route
+app.get("/employees", isLoggedIn, function (req, res) {
+	var e = "SELECT id AS EI, e_name AS Name, position AS Pos, e_email AS Email, e_ph_no AS PHN, DATE_FORMAT(joining_date, '%d-%m-%y') AS joining FROM employees";
+	connection.query(e, function (err, results) {
+		if (err) throw err;
+		var emp = results;
+		// console.log(emp);
+		res.render('employees', {empl:emp});
+	})
+})
+
+//Emaplois add route
+app.post("/employees", isLoggedIn, function(req, res){
+	var  newEmployee = { 
+		e_name : req.body.e_name,
+		e_email : req.body.e_email,
+		e_ph_no : req.body.e_ph_no,
+		position : req.body.position
+	};
+	connection.query('INSERT INTO employees SET?', newEmployee, function(err, result){
+		if(err) throw err;
+		res.redirect("/employees");
+	});
+});
+
+// Employee Delte Route
+app.delete("/employees/:id", isLoggedIn, function(req, res){
+	//destroy blog
+	var et = "DELETE FROM employees WHERE id =" + req.params.id;
+	connection.query(et, function(err, dRoom){
+		if(err) throw err;
+		var deleteRoom = dRoom;
+		// console.log(foundRoom[0].room_name);
+        res.redirect("/employees");
+	});
+
+	//redirect somewhere
+ });
 
 // AUTH ROUTES
 

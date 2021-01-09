@@ -83,7 +83,18 @@ CREATE TABLE reservation (
 -- ('3', '3' ),
 -- ('5', '4' );
 
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    e_name VARCHAR(40) NOT NULL,
+    e_email VARCHAR(30) NOT NULL,
+    e_ph_no INT NOT NULL,
+    position VARCHAR(25) NOt NULL,
+    joining_date TIMESTAMP DEFAULT NOW() 
+);
 
+-- INSERT INTO employees(e_name, e_email, e_ph_no, position)
+-- VALUES  ('Md Masrur Akhtar', 'kkakhtar143@gmail.com', 9577780979, 'Manager'),
+--         ('Md Altamsh Akhtar', 'mmakhtar143@gmail.com', 9577781959, 'Room Service');
 
 
 -- SELECT reservation.id AS RI, customers.id AS CI, customers.f_name AS FName, customers.l_name AS LName, customers.age, customers.email, customers.ph_no, rooms.id AS RmI, rooms.room_name, check_in, check_out, rooms.price FROM reservation, rooms, customers WHERE reservation.room_id = rooms.id AND reservation.customer_id = customers.id;
