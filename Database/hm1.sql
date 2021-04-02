@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 28, 2020 at 10:30 AM
+-- Generation Time: Jan 19, 2021 at 04:57 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `email` varchar(50) NOT NULL,
   `ph_no` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=225 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=229 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
@@ -267,7 +267,37 @@ INSERT INTO `customers` (`id`, `f_name`, `l_name`, `adds`, `age`, `email`, `ph_n
 (221, 'Altamash ', 'Khan', 'Mumbai', 20, 'mmakhter143@gmail.com', 2147483647),
 (222, 'Sarfaraz', 'Akhtar', 'Patna', 26, 'Nikhilsahani@gmail.com', 2147483647),
 (223, 'Misbah', 'Sultana', 'Bengaluru', 20, 'msb@gmail.com', 2147483647),
-(224, 'Altamash', 'Subhedar', 'Mumbai', 22, 'subhedaraltamash@gmail.com', 2147483647);
+(224, 'Altamash', 'Subhedar', 'Mumbai', 22, 'subhedaraltamash@gmail.com', 2147483647),
+(225, 'Sumaiya', 'banu', 'Bengaluru', 86, 'Nikhilsahani49@gmail.com', 2147483647),
+(226, 'Sadika', 'Banu', 'Mangalore', 22, 'mmakhtar143@gmail.com', 1234567890),
+(227, 'Aamir', 'Khan', 'Mumbai', 55, 'aamir@gmail.com', 1234598765),
+(228, 'Kabir', 'Khan', 'Bengaluru', 35, 'khan@gmail.com', 2147483647);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_name` varchar(40) NOT NULL,
+  `e_email` varchar(30) NOT NULL,
+  `e_ph_no` int(11) NOT NULL,
+  `position` varchar(25) NOT NULL,
+  `joining_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `e_name`, `e_email`, `e_ph_no`, `position`, `joining_date`) VALUES
+(1, 'Md Masrur Akhtar', 'kkakhtar143@gmail.com', 2147483647, 'Manager', '2021-01-09 12:21:47'),
+(2, 'Md Altamsh Akhtar', 'mmakhtar143@gmail.com', 2147483647, 'Room Service', '2021-01-09 12:21:47'),
+(4, 'Misba Sultan', 'msb@gmail.com', 2147483647, 'Asst Manager', '2021-01-09 13:35:07');
 
 -- --------------------------------------------------------
 
@@ -285,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   PRIMARY KEY (`id`),
   KEY `room_id` (`room_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=222 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservation`
@@ -296,7 +326,11 @@ INSERT INTO `reservation` (`id`, `room_id`, `customer_id`, `check_in`, `check_ou
 (218, 27, 221, '2020-11-20 18:30:00', '2020-11-29 18:30:00'),
 (219, 28, 222, '2020-11-25 18:30:00', '2020-12-04 18:30:00'),
 (220, 28, 223, '2020-11-20 18:30:00', '2020-11-29 18:30:00'),
-(221, 28, 224, '2020-11-21 18:30:00', '2020-11-29 18:30:00');
+(221, 28, 224, '2020-11-21 18:30:00', '2020-11-29 18:30:00'),
+(222, 31, 225, '2020-12-28 18:30:00', '2020-12-30 18:30:00'),
+(223, 31, 226, '2021-01-05 18:30:00', '2021-01-07 18:30:00'),
+(224, 31, 227, '2021-01-31 18:30:00', '2021-02-06 18:30:00'),
+(225, 31, 228, '2021-01-07 18:30:00', '2021-01-21 18:30:00');
 
 -- --------------------------------------------------------
 
@@ -314,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `room_desc` varchar(255) NOT NULL,
   `room_size` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rooms`
@@ -341,14 +375,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `user_name`, `pswd`, `created_at`) VALUES
-(7, 'sarfaraz', '12345', '2020-11-20 17:18:03');
+(7, 'sarfaraz', '12345', '2020-11-20 17:18:03'),
+(8, 'akhtar', '12345', '2021-01-09 14:55:39');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
